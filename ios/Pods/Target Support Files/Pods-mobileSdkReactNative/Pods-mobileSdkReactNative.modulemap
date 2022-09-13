@@ -1,0 +1,6 @@
+framework module Pods_mobileSdkReactNative {
+  umbrella header "Pods-mobileSdkReactNative-umbrella.h"
+
+  export *
+  module * { export * }
+}

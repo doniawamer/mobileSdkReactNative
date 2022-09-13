@@ -1,0 +1,6 @@
+framework module SalesforceReact {
+  umbrella header "SalesforceReact-umbrella.h"
+
+  export *
+  module * { export * }
+}

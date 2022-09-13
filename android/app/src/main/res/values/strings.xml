@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_type">com.test.mobile_sdk_react_native.login</string>
+	<string name="app_name">mobileSdkReactNative</string>
+	<string name="app_package">com.test.mobile_sdk_react_native</string>
+</resources>
