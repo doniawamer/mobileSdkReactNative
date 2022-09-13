@@ -14,17 +14,20 @@
         "@react-native-community/masked-view": "^0.1.10",
         "@react-navigation/native": "^6.0.2",
         "@react-navigation/stack": "^6.0.7",
+        "appcenter": "4.4.5",
+        "appcenter-analytics": "4.4.5",
+        "appcenter-crashes": "4.4.5",
+        "create-react-class": "^15.7.0",
         "react": "17.0.2",
         "react-native": "0.67.1",
         "react-native-force": "git+https://github.com/forcedotcom/SalesforceMobileSDK-ReactNative.git#v10.1.1",
         "react-native-gesture-handler": "^1.10.3",
         "react-native-safe-area-context": "^3.3.0",
-        "react-native-screens": "^3.6.0",
-        "create-react-class": "^15.7.0"
+        "react-native-screens": "^3.6.0"
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",
-        "@babel/preset-env": "^7.1.6",        
+        "@babel/preset-env": "^7.1.6",
         "@babel/runtime": "^7.12.5",
         "@react-native-community/eslint-config": "^2.0.0",
         "@types/jest": "^26.0.18",

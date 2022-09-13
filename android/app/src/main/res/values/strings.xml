@@ -3,4 +3,6 @@
     <string name="account_type">com.test.mobile_sdk_react_native.login</string>
 	<string name="app_name">mobileSdkReactNative</string>
 	<string name="app_package">com.test.mobile_sdk_react_native</string>
+	<string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
+	<string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 </resources>
