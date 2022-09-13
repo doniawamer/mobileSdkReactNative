@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:configuration"
+      name = "configuration">
+      <FileRef
+         location = "group:Common.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Common-iOS.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Configuration-Debug.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Configuration-Release.xcconfig">
+      </FileRef>
+      <FileRef
+         location = "group:Packaging-Dynamic.xcconfig">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Libs">
+      <FileRef
+         location = "group:libs/SalesforceSDKCommon/SalesforceSDKCommon.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:libs/SalesforceAnalytics/SalesforceAnalytics.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:libs/SalesforceSDKCore/SalesforceSDKCore.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:libs/SmartStore/SmartStore.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:libs/MobileSync/MobileSync.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "NativeSamples">
+      <FileRef
+         location = "group:native/SampleApps/RestAPIExplorer/RestAPIExplorer.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:native/SampleApps/MobileSyncExplorer/MobileSyncExplorer.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "External">
+   </Group>
+   <Group
+      location = "group:external/ThirdPartyDependencies"
+      name = "ThirdPartyDependencies">
+      <Group
+         location = "group:sqlcipher"
+         name = "sqlcipher">
+         <FileRef
+            location = "group:SQLCipher.xcframework">
+         </FileRef>
+         <FileRef
+            location = "group:LICENSE">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
+      location = "container:"
+      name = "shared">
+      <Group
+         location = "group:shared/resources"
+         name = "resources">
+         <Group
+            location = "group:Images.xcassets"
+            name = "Images.xcassets">
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:appicon29x29.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon40x40.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon58x58.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon76x76.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon80x80.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon87x87.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon120x120.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon152x152.png">
+               </FileRef>
+               <FileRef
+                  location = "group:appicon180x180.png">
+               </FileRef>
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:SalesforceSDKResources.bundle">
+         </FileRef>
+         <FileRef
+            location = "group:SalesforceSDKAssets.xcassets">
+         </FileRef>
+         <FileRef
+            location = "group:LaunchScreen.storyboard">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:shared/test"
+         name = "test">
+         <FileRef
+            location = "group:test_credentials.json">
+         </FileRef>
+      </Group>
+   </Group>
+</Workspace>

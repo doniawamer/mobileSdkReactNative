@@ -1,6 +1,0 @@
-[submodule "mobile_sdk/SalesforceMobileSDK-iOS/external/fmdb"]
-	path = external/fmdb
-	url = https://github.com/forcedotcom/fmdb
-[submodule "mobile_sdk/SalesforceMobileSDK-Android/external/shared"]
-	path = external/shared
-    url = https://github.com/forcedotcom/SalesforceMobileSDK-Shared.git

@@ -1,0 +1,131 @@
+anchors:
+  - &latest-xcode "13.2.1"
+  - &latest-ios   "15.2"
+  - &min-ios      "14.5"
+  - &chruby       "3.0.3"
+
+executors:
+  mac:
+    working_directory: ~/SalesforceMobileSDK-iOS
+    macos:
+      xcode: *latest-xcode
+    shell: /bin/bash --login -eo pipefail
+    environment:
+      BASH_ENV: ~/.bashrc
+      FASTLANE_SKIP_UPDATE_CHECK: "true"
+      CHRUBY_VER: *chruby
+
+version: 2.1
+jobs:
+  run-tests:
+    parameters:
+      lib:
+        type: string
+        default: "SalesforceSDKCommon"
+      device:
+        type: string
+        default: "iPhone 12"
+      ios:
+        type: string
+        default: *latest-xcode
+      nightly-test:
+        type: boolean
+        default: false
+      env: 
+        type: executor
+        default: "mac"
+    executor: << parameters.env >> 
+    environment:
+      LIB: << parameters.lib >> 
+      DEVICE: << parameters.device >>
+      IOS_VERSION: << parameters.ios >>
+      NIGHTLY_TEST: << parameters.nightly-test >>
+    steps:
+      - checkout
+      - restore_cache: 
+          keys:
+            - v7-gems-{{ checksum ".circleci/Gemfile.lock" }}
+            - v7-gems-
+      - run: 
+          name: Install Dependencies
+          command:  |
+            npm install shelljs@0.8.4
+            ./install.sh
+            ./build/pre-build
+            chruby ${CHRUBY_VER}
+            cd .circleci
+            bundle check || sudo bundle install
+            sudo bundle update
+      - save_cache: 
+          key: v7-gems-{{ checksum ".circleci/Gemfile.lock" }}
+          paths:
+            - /Users/distiller/.gem/ruby/3.0.3
+      - run: 
+          name: Run Tests
+          command:  |
+            chruby ${CHRUBY_VER}
+            cd .circleci
+            bundle exec fastlane PR lib:<< parameters.lib >> 
+      - run: 
+          name: Danger Lib
+          command:  |
+            chruby ${CHRUBY_VER}
+            DANGER_GITHUB_API_TOKEN="279a29d75427e4178cef""b7b5b2d7646c540f025a" danger --dangerfile=.circleci/Dangerfile-Lib.rb --danger_id="${LIB}" --verbose
+          background: true
+          when: always
+      - store_test_results:
+          path: /Users/distiller/SalesforceMobileSDK-iOS/test_output/
+      - store_artifacts:
+          path: /Users/distiller/SalesforceMobileSDK-iOS/test_output/
+          destination: Test-Results
+      - store_artifacts:
+          path: /Users/distiller/SalesforceMobileSDK-iOS/clangReport
+          destination: Static-Analysis
+
+      
+workflows:
+  version: 2
+
+  build-test-pr:
+    jobs:
+      - run-tests:
+          matrix:
+            parameters:
+              lib: ["SalesforceSDKCommon", "SalesforceAnalytics", "SalesforceSDKCore", "SmartStore", "MobileSync"]
+          filters:
+            branches:
+              only:
+                - /pull.*/
+
+  # Cron are on a timezone 8 hours ahead of PST
+  # Build everything at ~10:30pm Tuesday/Thursday Nights
+  #
+  # Note:  The "requires" field is used to limit the number of concurrent jobs running (one per lib) to prevent 
+  # test faulures since some tests rely on the server or storage to have consistent counts.  Unfotunately the 
+  # "requires" field is just a string so anchors cannot be added, thus we need to maintain the iOS version.  
+  nightly-test-ios:
+    triggers:
+      - schedule:
+          cron: "30 6 * * 3,5"
+          filters:
+            branches:
+              only:
+                - dev
+    jobs:
+      - run-tests:
+          name: test << matrix.lib >> iOS << matrix.ios >> 
+          matrix:
+            parameters:
+              lib: ["SalesforceSDKCommon", "SalesforceAnalytics", "SalesforceSDKCore", "SmartStore", "MobileSync"]
+              nightly-test: [true]
+              ios: [*min-ios]
+              device: ["iPhone 8"]
+      - run-tests:
+          name: test << matrix.lib >> iOS << matrix.ios >> 
+          matrix:
+            parameters:
+              lib: ["SalesforceSDKCommon", "SalesforceAnalytics", "SalesforceSDKCore", "SmartStore", "MobileSync"]
+              nightly-test: [true]
+              ios: [*latest-ios]
+          requires:
+            - test << matrix.lib >> iOS 14.5
