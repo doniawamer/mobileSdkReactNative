@@ -282,7 +282,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile_sdk_react_native.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile-sdk-react-native.mobileSdkReactNative";
 				PRODUCT_NAME = mobileSdkReactNative;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -316,7 +316,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile_sdk_react_native.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.mobile-sdk-react-native.mobileSdkReactNative";
 				PRODUCT_NAME = mobileSdkReactNative;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
