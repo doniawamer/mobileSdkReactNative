@@ -14,7 +14,7 @@
         "@react-native-community/masked-view": "^0.1.10",
         "@react-navigation/native": "^6.0.2",
         "@react-navigation/stack": "^6.0.7",
-        "appcenter": "4.4.5",
+        "appcenter": "^4.4.5",
         "appcenter-analytics": "4.4.5",
         "appcenter-crashes": "4.4.5",
         "create-react-class": "^15.7.0",
